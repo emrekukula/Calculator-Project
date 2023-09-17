@@ -29,17 +29,6 @@ div.buttons {
     background-color: rgb(173, 131, 131);
 }
 
-button.clear {
-    padding-right: 30px;
-    padding-left: 30px;
-    margin-left: 3px;
-}
-
-button.allClear {
-    padding-right: 10px;
-    padding-left: 10px;
-}
-
 button.decimal {
     width: 43px;
 }

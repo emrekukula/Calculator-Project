@@ -19,6 +19,9 @@ allClear.addEventListener('click', allClearDisplay)
 const clear = document.querySelector('.clear');
 clear.addEventListener('click', clearCurrent);
 
+const backspace = document.querySelector('.backspace');
+backspace.addEventListener('click', backspaceButton);
+
 
 let currentNum = '';
 let previousNum = '';
@@ -46,12 +49,20 @@ operators.forEach((btn) => {
 })
 
 function handleOperator(op) {
-    operator = op;
-    previousNum = roundNumber(currentNum);
-    previousDisplayNumber.textContent = previousNum + ' ' + operator;
-    currentNum = '';
-    currentDisplayNumber.textContent = '-';
-}
+    // To see the equal pressing only operators
+    if ( previousDisplayNumber.textContent.includes('+') ||
+         previousDisplayNumber.textContent.includes('-') ||
+         previousDisplayNumber.textContent.includes('/') ||
+         previousDisplayNumber.textContent.includes('*')  
+        ) {
+        calculate();
+        } 
+        operator = op;
+        previousNum = roundNumber(currentNum);
+        previousDisplayNumber.textContent = previousNum + ' ' + operator;
+        currentNum = '';
+        currentDisplayNumber.textContent = '-';
+    }
 
 function calculate() {
     previousNum = Number(previousNum);
@@ -86,6 +97,7 @@ function calculate() {
 
     let roundedNum = roundNumber(previousNum);
     currentNum = roundedNum;
+    previousNum = currentNum;
     previousDisplayNumber.textContent = '-';
     currentDisplayNumber.textContent = roundedNum;
 }
@@ -112,4 +124,9 @@ function decimalButton() {
         currentNum += '.';
         currentDisplayNumber.textContent = currentNum;
     }
+}
+
+function backspaceButton() {
+    currentNum = Math.floor(currentNum);
+    currentDisplayNumber.textContent = Math.floor(currentNum / 10);
 }
