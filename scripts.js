@@ -1,3 +1,5 @@
+window.addEventListener('keydown', handleKeyPress);
+
 const currentDisplayNumber = document.querySelector('.currentNumber');
 const previousDisplayNumber = document.querySelector('.previousNumber');
 
@@ -68,9 +70,9 @@ function calculate() {
     previousNum = Number(previousNum);
     currentNum = Number(currentNum);
 
-    if ( operator === '+') {
+    if (operator === '+') {
         previousNum += currentNum;
-    } else if ( operator === '/') {
+    } else if (operator === '/') {
         previousNum /= currentNum;
         if (currentNum === 0) {
             previousNum = '-';
@@ -127,6 +129,32 @@ function decimalButton() {
 }
 
 function backspaceButton() {
-    currentNum = Math.floor(currentNum);
-    currentDisplayNumber.textContent = Math.floor(currentNum / 10);
+    currentNum = currentNum.slice(0, -1)
+    currentDisplayNumber.textContent = currentNum;
+    if ( currentNum === '') {
+        currentDisplayNumber.textContent = '0';
+    }
 }
+
+function handleKeyPress(e) {
+    e.preventDefault();
+    if (e.key >= 0 && e.key <= 9) {
+        handleNumber(e.key);
+    }
+    if (e.key === 'Enter' || e.key === '=' ) {
+        if (currentNum == '' || previousNum == '') {
+            return;
+        }
+    calculate();
+    }
+    if (e.key === '+' || e.key === '-' || 
+        e.key === '*' || e.key === '/') {
+            handleOperator(e.key);
+    }
+    if (e.key === '.') {
+        decimalButton();
+    }
+    if (e.key === 'Backspace') {
+        backspaceButton();
+    }
+} 
