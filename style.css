@@ -1,0 +1,49 @@
+* {
+    font-size: 50px;
+} 
+
+body {
+    display: flex;
+    position: absolute;
+    top: 18%;
+    left: 40%;
+    border-radius: 2px;
+    border-color: blue;
+}
+
+.output {
+    font-style: italic;
+    text-align: right;
+}
+
+div.currentDisplay {
+    background-color: rgb(156, 54, 54);
+}
+
+div.previousDisplay {
+    background-color: rgb(132, 42, 111);
+}
+
+div.buttons {
+    flex: 1;
+    background-color: rgb(173, 131, 131);
+}
+
+button.clear {
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-left: 3px;
+}
+
+button.allClear {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+button.decimal {
+    width: 43px;
+}
+
+button.operator {
+    width: 45px;
+}
